@@ -23,6 +23,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
 // コピーボタンの機能
 document.querySelectorAll('.copy-button').forEach(button => {
     button.addEventListener('click', () => {

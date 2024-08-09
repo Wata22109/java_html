@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript技術解説</title>
+    <title>JavaScript超基礎</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- カスタムCSS -->
@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>JavaScript技術解説</h1>
+    <h1>JavaScript超基礎</h1>
     
     <div id="toc">
         <h2>目次</h2>
@@ -24,7 +24,36 @@
             <p>JavaScriptは動的型付け言語で、ウェブサイトに対話性を追加するプログラミング言語です。<br>
                 このページでは、JavaScriptの基本的な構文について、プログラムの最低限の知識を知っていることを前提に解説します。</p>
             </p>
+            <h3>javascriptとは？</h3>
+            <p>JavaScriptは主にウェブサイトを作るために使われるプログラミング言語です。
+                ボタンをクリックしたときのイベント発生など、ウェブサイトに対話性を追加します。<br>
+                また、文法は比較的簡単で、初心者でも短期間で基本的なコードを書くことができます。</p>
+            <h4>特徴</h4>
+            <p>JavaScriptはインタプリタ型の言語であり、ブラウザが直接コードを解釈して実行します。
+                これにより、迅速な開発とテストが可能です。<br>
+                また、JavaScriptは動的型付け言語であり、変数の型は実行時に決定されるため、柔軟なコードを書くことができます。
+                たとえば、以下のプログラムのように同じ変数に異なるデータ型の値を割り当てることができます。
+                
+            </p>
             <div class="code-block">
+                <button class="copy-button">コピー</button>
+                <pre><code class="language-javascript">
+//java
+let data = 10; // 数値型
+// typeof演算子は変数や値の型を調べるために使用されます。
+console.log(typeof data); // 出力は"number"
+
+data = "JavaScript"; // 10が入った変数に文字列を代入
+console.log(typeof data); // 出力は"string"
+
+//JavaScriptでは自動的に変数のデータ型を決定・変換する。                        
+                </code></pre>
+            </div>
+            <p>動的型付けは便利な機能ですが、デメリットもあります。例えば、「01」という値を文字列として扱いたかったが、数値型に変換され「1」として演算されてしまうなど、
+                意図しないデータ型変換が行われてしまうことがあるため注意が必要です。</p>
+        </div>
+
+            <!-- <div class="code-block">
                 <button class="copy-button">コピー</button>
                 <pre><code class="language-javascript">
 // 変数宣言
@@ -50,30 +79,58 @@ let person = {
 person.sayHello();
                 </code></pre>
             </div>
-        </div>
+        </div> -->
 
         <div class="topic" id="let">
             <h3>変数、定数、配列</h3>
-            <p>変数宣言にはlet、定数宣言にはconstを使います。プログラム中に変更する予定がある場合は変数、
-                変更させたくない場合は定数を使用します。定数を再代入しようとするとエラーが発生します。</p>
+            <p>変数はlet、定数はconstの後に任意の名前を指定することで宣言します。プログラム中に変更する予定がある場合は変数、
+                変更させたくない場合は定数を使用します。定数を再代入しようとするとエラーが発生します。配列は複数の値を格納するためのデータ構造です。
+                変更の予定がある場合はlet、変更させたくない場合はconstを使用して定義します。<br>
+                また、JavaScript は大文字と小文字を区別します。 xyzはxYzとは異なる変数です。</p>
             <div class="code-block">
                 <button class="copy-button">コピー</button>
                 <pre><code class="language-javascript">
+//java
 // 変数宣言
-let x = 10;
+let x = 10;  //★末尾にはセミコロンをつける
 let y = 20;
+let array = [1, 2, 3, 4, 5]; // 配列(変数)
 
-x = 30; // 再代入可能
+x = 30; // 上書き可能
+console.log(x); // 出力は30
 
 // 定数宣言
 const PI = 3.14;
 const TAX_RATE = 0.08;
+const array = [1, 2, 3, 4, 5]; // 配列(定数)
 
 PI = 3.14159; // エラー(定数は誤って再代入することを防ぐ)
 
                 </code></pre>
             </div>
+            <div class="topic" id="nodejs">
+                <h3>変数の値の確認</h3>
+                <p>consoleオブジェクトを用いることで変数の値などをコンソール上に出力することができます。<br>
+                    主に出力の確認や不具合の原因特定などのデバックに使用されます。<br>
+                    以下のようなjavascriptファイルを読み込ませたhtmlを開き、consoleから確認できます。</p>
+                    <div class="code-block">
+                        <button class="copy-button">コピー</button>
+                        <pre><code class="language-javascript">
+//java
+let x = 0;
+let y = [1, 2, 3];
+console.log(x);
+console.log(typeof x);
+console.log(y);
+                </code></pre>
+            </div>
+                <img src="console.jpg" class="img-fluid" alt="console"></div>                         
         </div>
+
+
+        <div class="topic" id="type">
+            <h3>データ型</h3>
+
 
         <div class="topic" id="nodejs">
             <h3>Node.jsの概要と活用方法</h3>
@@ -87,6 +144,10 @@ PI = 3.14159; // エラー(定数は誤って再代入することを防ぐ)
             <button type="button" class="ml-1 btn btn-primary">Primary</button>
             <button type="button" class="ml-1 btn btn-primary">Primary</button>
         </div>
+        <div class="topic" id="time">
+            <h3>累計作成時間</h3>
+            <p>4時間</p>
+        </div>        
     </div>
 
     
