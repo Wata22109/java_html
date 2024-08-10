@@ -30,7 +30,8 @@
                 また、文法は比較的簡単で、初心者でも短期間で基本的なコードを書くことができます。</p>
             <h4>特徴</h4>
             <p>JavaScriptはインタプリタ型の言語であり、ブラウザが直接コードを解釈して実行します。
-                これにより、迅速な開発とテストが可能です。<br>
+                これにより、迅速な開発とテストが可能です。そして、JavaScriptはChromeやFirefoxといったブラウザ上で動作するプログラミング言語です。
+                対してPythonなどの一般的なプログラミング言語は通常PC上で動作します。<br>
                 また、JavaScriptは動的型付け言語であり、変数の型は実行時に決定されるため、柔軟なコードを書くことができます。
                 たとえば、以下のプログラムのように同じ変数に異なるデータ型の値を割り当てることができます。
                 
@@ -40,9 +41,7 @@
                 <pre><code class="language-javascript">
 //java
 let data = 10; // 数値型
-// typeof演算子は変数や値の型を調べるために使用されます。
 console.log(typeof data); // 出力は"number"
-
 data = "JavaScript"; // 10が入った変数に文字列を代入
 console.log(typeof data); // 出力は"string"
 
@@ -53,33 +52,6 @@ console.log(typeof data); // 出力は"string"
                 意図しないデータ型変換が行われてしまうことがあるため注意が必要です。</p>
         </div>
 
-            <!-- <div class="code-block">
-                <button class="copy-button">コピー</button>
-                <pre><code class="language-javascript">
-// 変数宣言
-let greeting = "Hello, World!";
-
-// 関数定義
-function greet(name) {
-    console.log(`${greeting} My name is ${name}.`);
-}
-
-// 関数呼び出し
-greet("Alice");
-
-// オブジェクト操作
-let person = {
-    name: "Bob",
-    age: 30,
-    sayHello: function() {
-        console.log(`Hello, I'm ${this.name}`);
-    }
-};
-
-person.sayHello();
-                </code></pre>
-            </div>
-        </div> -->
 
         <div class="topic" id="let">
             <h3>変数、定数、配列</h3>
@@ -127,13 +99,212 @@ console.log(y);
                 <img src="console.jpg" class="img-fluid" alt="console"></div>                         
         </div>
 
-
         <div class="topic" id="type">
-            <h3>データ型</h3>
+            <h3>型</h3>
+            <p>JavaScriptでは基本となるデータ型が6つあります。
+                それぞれのデータ型には、それぞれの特徴があります。</p>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">データ型</th>
+                        <th scope="col">説明</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>数値(Number)</td>
+                        <td>整数や浮動小数点数を含む幅広い数値を扱うことができるデータ型</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>文字列(String)</td>
+                        <td>文字列など、テキストデータを扱うためのデータ型</td>                                               
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>真偽(Boolean)</td>
+                        <td>true（真）またはfalse（偽）のいずれかの値を取る型</td>                                               
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>未定義(Undefined)</td>
+                        <td>変数が宣言されたが、まだ値が割り当てられていないときの型</td>                                                
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>空(Null)</td>
+                        <td>意図的に変数に「値がない」ことを示すために使われる型</td>                                                
+                      </tr>                                                 
+                      <tr>
+                        <th scope="row">6</th>
+                        <td>シンボル(Symbol)</td>
+                        <td>この型を持つ値は「シンボル値」とすることができる</td>                                                 
+                      </tr> 
+                    </tbody>
+                  </table>
+                  <p>Symbol型はES6で追加されたデータ型で、一意の識別子を生成するために使用されます。
+                    たとえ同じ説明で複数のシンボルを作ったとしても、それらは異なる値です。説明は何にも影響を与えません。
+                    オブジェクトのプロパティ名に衝突が起こる可能性がある場合、Symbolを使うことで固有のプロパティを作成できます。
+                    特に、他の開発者やライブラリとの統合を行う際、別のプロパティ名が衝突するリスクを避けることができます。
+                  </p>
+                  <div class="code-block">
+                    <button class="copy-button">コピー</button>
+                    <pre><code class="language-javascript">
+//java
+let x = Symbol("a");  //()内は説明
+let y = Symbol("a");
+
+alert(x == y); // 出力はfalse(偽)となる。つまり、xとyは等しくない
+                </code></pre>                                                               
+            </div>
+        </div>
+
+        <div class="topic" id="if">
+            <h3>条件文</h3>
+            <p>JavaScriptでの条件分岐処理は他の言語と同様にif文を使用します。
+                if文は条件式が真の場合に処理を実行します。条件式が偽の場合は処理をスキップします。<br>
+                また、else文やelse ifを使用することで、最初の条件式が偽の際の処理を書くこともできます。</p>
+
+            <div class="code-block">
+                <button class="copy-button">コピー</button>
+                <pre><code class="language-javascript">
+//java
+//
+let x = 10;
+if （x > 5） {                      //()内には条件式を記述
+    console.log("xは5より大きいです"); //条件が真の場合に実行
+    } else if (x == 5) {           //2つ目の条件式
+    console.log("xは5です");         //2つ目の条件が真の場合に実行
+    } else {                        
+    console.log("xは5より小さいです");  //2つの条件が偽の場合に実行
+    }
+
+            </code></pre>                                                               
+        </div>
+        <h4>論理演算子<h4>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">記述</th>
+                    <th scope="col">説明</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>A && B</td>
+                    <td>A、Bが両方とも真であれば実行される</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>A || B</td>
+                    <td>AまたはBどちらか一方でも真であれば実行される</td>                                              
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>!A</td>
+                    <td>Aが偽であれば実行される</td>                                              
+                    </tr>                                                 
+                </tbody>
+                </table>            
+        </div>
+
+        <div class="topic" id="roop">
+            <h3>繰り返し処理</h3>
+            <p>繰り返し処理もほかの言語と同様、for文やwhile文を使用する。</p>
+            <h4>for文</h4>
+            <p>for文は指定した条件が偽となるまで処理を繰り返します。</p>
+            <div class="code-block">
+                <button class="copy-button">コピー</button>
+                <pre><code class="language-javascript">
+//java
+let total = 0; // totalの初期値は0
+for (let i = 0; i < 10; i++) {   //iが10未満の間繰り返す 処理終了後にiに1を加算
+    total += i + 1; // 1から10の値をtotalに加算する
+}
+console.log(total); // 出力は55
+
+            </code></pre>                                                               
+        </div>
+            <h4>while文</h4>
+            <p>while文は指定した条件が偽となるまで処理を繰り返します。</p>
+            <div class="code-block">
+                <button class="copy-button">コピー</button>
+                <pre><code class="language-javascript">
+//java
+let x = 0;
+let total = 0;
+while (x < 10) {
+    total += x + 1;
+    x += 1;         //処理終了後にxに1を加算
+}
+console.log(total); // 出力は55
+            </code></pre>                                                               
+        </div>
+        </div>
+
+        <div class="topic" id="function">
+            <h3>関数</h3>
+            <p>関数を用いることで、複数の処理をひとまとまりにできます。
+                関数の定義はfunctionキーワードを使用します。</p>
+            <div class="code-block">
+                <button class="copy-button">コピー</button>
+                <pre><code class="language-javascript">
+//java
+let x = 10;
+let y = 20;
+function add(a, b) {    // 関数の定義
+    return a + b;       // aとbを足した値を返す
+}
+console.log(add(x, y)); // 出力は30
+            </code></pre>                                                               
+        </div>
+        <p>関数は関数式によって作成することもできます。
+            関数式は変数に関数を代入することで作成します。</p>
+            <div class="code-block">
+                <button class="copy-button">コピー</button>
+                <pre><code class="language-javascript">
+//java
+let x = 10;
+let y = 20;
+const add = function (a, b) { // 関数式 関数に変更の予定はないためconstを使用
+    return a + b;
+  };
+console.log(add(x,y)); // 出力は30
+            </code></pre>                                                               
+        </div>
+        </div>
+
+        <div class="topic" id="object">
+            <h3>オブジェクト</h3>
+            <p>オブジェクトは複数の値をひとまとめにして扱うためのデータ構造です。変数や定数では値を1つしか格納できませんが、
+                オブジェクトを使用することで複数の値を格納することができます。c言語の構造体に似ています。
+                オブジェクトはキーと値のペアで構成され、キーを指定することで値を取得できます。</p>
+                <div class="code-block">
+                    <button class="copy-button">コピー</button>
+                    <pre><code class="language-javascript">
+//java
+const person = { // オブジェクトの定義
+    name: "山田太郎", // キー: 値
+    age: 20,
+    gender: "男性"
+    };
+console.log(person.name); // 出力は"山田太郎"
+console.log(person); // 画像のような出力となる
+                </code></pre>                                                               
+            </div>
+            <img src="console2.jpg" class="img-fluid" alt="console2">
+            <p>また、JavaScriptではあらかじめ定義されたオブジェクトが存在し、定義せずに利用することができる。
+                例えばWindowオブジェクトはブラウザのウィンドウのプロパティを表し、ページの高さや幅を取得することができる。
+            </p>
+            </div>                
 
 
         <div class="topic" id="nodejs">
-            <h3>Node.jsの概要と活用方法</h3>
+            <h2>Node.jsの概要と活用方法</h2>
             <p>Node.jsはサーバーサイドJavaScriptの実行環境で、非同期I/Oと単一スレッドのイベントループが特徴です。</p>
         </div>
 
@@ -146,7 +317,7 @@ console.log(y);
         </div>
         <div class="topic" id="time">
             <h3>累計作成時間</h3>
-            <p>4時間</p>
+            <p>8時間</p>
         </div>        
     </div>
 
