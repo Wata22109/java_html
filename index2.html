@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript基礎</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- カスタムCSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>JavaScript基礎</h1>
+    
+    <div id="toc">
+        <h2>目次</h2>
+        <ul id="tocList"></ul>
+    </div>
+
+        <div class="topic" id="nodejs">
+            <h2>Node.jsの概要と活用方法</h2>
+            <p>前頁の特徴の項目で説明したように、Javascriptはブラウザ上で、PythonなどはPC上で動作します。
+                これが生み出す違いはOSの機能にアクセスできるかどうかです。PC上で動作するプログラムはOSの機能にアクセスできますが、
+                ブラウザ上で動作するプログラムはOSの機能にアクセスできません。もしブラウザ上で動作するプログラムがOSにアクセスできてしまうと
+                サイトにアクセスしただけで勝手にパソコン上のファイルを読み書きされたり、パソコン上のファイルを消されたりするなどセキュリティ上の問題が発生します。<br>
+                そこで、JavascriptをPC上で動作可能にするのがNode.jsです。Node.jsがあれば限定的にOSの機能へアクセスすることができます。
+                Node.jsとは、JavaScriptをサーバーサイド(ユーザーが見えない部分)で実行するための<strong>実行環境</strong>です。
+                PHPやPythonを動かす場合、実行環境をインストールする必要があります。一方JavaScriptを動かす場合、特に実行環境を用意しなくても、ブラウザさえあれば動きます。
+                これは、ブラウザがJavaScriptの実行環境の役割を果たしてくれているからです。しかし、JavaScriptをブラウザではなくサーバサイドで動かす場合は、
+                実行環境を用意しないといけません。その実行環境がNode.jsです。JavaScriptとNode.jsは全く別物なため、注意が必要です。<br>
+                Node.jsを使うことで、フロントエンド(ユーザーが見える部分)とサーバサイドで使う言語をJavaScriptで統一できるため、プログラマーの負担を減らすことが可能です。
+                <h3>Node.jsを使う場面</h3>
+                <p></p>
+                
+            </p>
+        </div>
+
+        <!-- 他のトピックも同様に追加 -->
+        <div class="d-flex justify-content-center"> 
+            <button type="button" class="btn btn-primary" onclick="location.href='index3.html'">Nextpage</button>
+
+        </div>
+        <div class="topic" id="time">
+            <h3>累計作成時間</h3>
+            <p>8時間</p>
+        </div>        
+    </div>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
