@@ -18,25 +18,242 @@
         <ul id="tocList"></ul>
     </div>
 
-        <div class="topic" id="nodejs">
+        <div class="topic" id="create">
             <h2>クイズゲームの作成</h2>
             <p>JavaScriptの基本がわかったところで実際にwebアプリを作成してみましょう。
-                今回は以下のようなクイズゲームを作成します。クイズゲームは、問題を出題し、ユーザーが答えるというシンプルなものです。
+                今回は以下のようなクイズゲームを作成します。クイズゲームは、問題を出題し、4つの選択肢の中から答えるというシンプルなものです。
             </p>
             <div class="d-flex justify-content-center"> 
                 <button type="button" class="btn btn-primary" onclick="location.href='quiz.html'">クイズゲーム</button>
             </div>
+            <div class="topic" id="quiestion">
+                <h3>問題</h3>
+                <p>まずはクイズゲームで出題する問題を定義します。jsファイルを作成して以下のようなコードを記述してください。</p>
+                <div class="code-block">
+                    <button class="copy-button">コピー</button>
+                    <pre><code class="language-javascript">
+//java
+const quizData = [
+    {
+        question: "JavaScriptの正式名称は？",   //問題文
+        options: ["JavaScript", "ECMAScript", "TypeScript", "CoffeeScript"],  //選択肢
+        correct: 1,   //正解の選択肢のインデックス
+        explanation: "JavaScriptの正式名称はECMAScriptです。JavaScriptはECMAScriptの実装の一つです。"  //解説
+    },
+    {
+        question: "JavaScriptの変数宣言に使用されないキーワードは？",
+        options: ["var", "let", "const", "string"],
+        correct: 3,
+        explanation: "'string'は変数宣言のキーワードではなく、データ型を表します。変数宣言には'var'、'let'、'const'を使用します。"
+    },
+    // ここに他の問題を追加します。形式は同じです。
+];
+                </code></pre>                                                               
+            </div>
+            <p>この部分では、クイズの問題を配列として定義しています。
+                各問題はオブジェクトとして表現され、問題文、選択肢、正解のインデックス、解説を含んでいます。</p>
         </div>
 
+        <div class="topic" id="variable">
+            <h3>クイズで使用する変数</h3>
+            <p>次にクイズゲームで使用する変数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>
+
+        <div class="code-block">
+            <button class="copy-button">コピー</button>
+            <pre><code class="language-javascript">
+//java
+let currentQuestions = [];  //現在の問題
+let currentQuestion = 0;    //現在の問題番号
+let score = 0;              //正解数
+                </code></pre>                                                               
+            </div>
+            <p>これらの変数は、クイズ全体で使用されるため、あらかじめ定義します。</p>
+        </div>
+
+        <div class="topic" id="shuffle">
+            <h3>問題をランダムに出題するための関数</h3>
+            <p>次に、問題をランダムに出題するための関数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>
+            <div class="code-block">
+                <button class="copy-button">コピー</button>
+                <pre><code class="language-javascript">
+    //java
+    function shuffleArray(array) {    //配列をランダムに並び替える関数 array(配列)を引数として受け取る
+        for (let i = array.length - 1; i > 0; i--) {  //配列の要素数分繰り返す
+            const j = Math.floor(Math.random() * (i + 1));  //0からiまでの乱数を生成
+            [array[i], array[j]] = [array[j], array[i]];  //生成された乱数に応じて配列の要素を入れ替える
+        }
+        return array;  //入れ替えた配列を返す
+    }
+                    </code></pre>                                                               
+                </div>
+                <p>この関数は、配列をランダムに並び替えるためのものです。
+                    また、関数内で使われている「Math」オブジェクトはJavaScriptで数学的な定数と関数を提供する組み込みオブジェクトです。
+                    Math.floor() 関数は与えられた数値以下の最大の整数を返します。
+                    Math.random() 関数は、 0 以上 1 未満の範囲で浮動小数点の擬似乱数を返します。
+                </p>
+            </div>
+            <div class="topic" id="init">
+                <h3>問題を5問出題する関数</h3>
+                <p>次に、クイズゲームで問題を5問出題する関数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>
+                <div class="code-block">
+                    <button class="copy-button">コピー</button>
+                    <pre><code class="language-javascript">
+//java
+function initQuiz() {  //クイズを初期化する関数
+    currentQuestions = shuffleArray([...quizData]).slice(0, 5);  //問題をランダムに並び替えて5問取り出す
+    currentQuestion = 0;  //現在の問題番号を初期化
+    score = 0;  //正解数を初期化
+    loadQuiz(); //問題を読み込む
+}
+                        </code></pre>                                                               
+                    </div>
+                    <p>この関数は、クイズゲームを初期化するためのものです。
+                        まず、先程定義したshuffleArrayを使用して問題をランダムに並び替えて5問取り出します。次に、現在の問題番号と正解数を初期化し、問題を読み込みます。
+                        また、currentQuestions = shuffleArray([...quizData]).slice(0, 5);の行において...quizDataとすることで、quizData配列のコピーを作成しています。
+                        これにより、元のクイズデータを保持しながら、毎回異なる順序で問題を提示することができます。<br>
+                        slice()メソッドは配列の一部を抽出して新しい配列を作成します。このメソッドは元の配列を変更せず、指定された範囲の要素を含む新しい配列を返します。
+                        .slice(0, 5)は、配列の最初から5番目までの要素を取り出すためのものです。(5番目の要素は含まれません)
+                    </p>
+                    </div>
+                    <div class="topic" id="output">
+                        <h3>画面の表示を行う関数</h3>
+                        <p>次に、クイズゲームで問題を表示するための関数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>
+                        <div class="code-block">
+                            <button class="copy-button">コピー</button>
+                            <pre><code class="language-javascript">
+//java
+function loadQuiz() {   //問題を読み込む関数
+    const quizElement = document.getElementById("quiz");   //htmlのquiz要素を取得
+    const currentQuizData = currentQuestions[currentQuestion];   //現在の問題を取得
+
+    quizElement.innerHTML = `   //問題を表示
+        &lt;h2&gt;${currentQuestion + 1}. ${currentQuizData.question}&lt;/h2&gt;  //問題文を表示
+        ${currentQuizData.options.map((option, index) => `            //選択肢を表示
+            &lt;div&gt;
+                &lt;input type="radio" name="answer" value="${index}" id="option${index}"&gt;  //ラジオボタンを作成
+                &lt;label for="option${index}">${option}&lt;/label&gt;                            //ラベルを作成
+            &lt;/div&gt;
+        `).join("")}   //map()メソッドで選択肢を表示し、join()メソッドで文字列に変換
+    `;
+}
+                        </code></pre>                                                               
+                    </div>
+                    <p>quizElementではHTMLの"quiz"というIDを持つ要素を取得します。これが問題を表示する場所になります。
+                        ここで使用されているdocumentオブジェクトは、JavaScriptを通してhtmlやXMLのようなマークアップ言語を操作するための組み込みオブジェクトです。<br>
+                        currentQuizData現在の問題のデータをcurrentQuestions配列から取得します。
+                        document.getElementById(id)は idプロパティが指定された文字列に一致する要素を表すElementオブジェクトを返します。<br>
+                        quizElement.innerHTMLでは、問題文と選択肢を表示するためのHTMLを生成しています。
+                        .innerHTMLプロパティは、指定した要素の中身を取得または設定するためのプロパティです。<br>
+                        <br>
+                    </p>
+                    </div>
+                    <div class="topic" id="check">
+                        <h3>解答の確認</h3>
+                        <p>次に、解答の正誤を確認するための関数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>
+                        <div class="code-block">
+                            <button class="copy-button">コピー</button>
+                            <pre><code class="language-javascript">
+//java
+function checkAnswer() {      //解答を確認する関数
+    const answer = document.querySelector('input[name="answer"]:checked');  //選択された解答を取得
+    if (answer) {  //解答が選択されている場合
+        if (parseInt(answer.value) === currentQuestions[currentQuestion].correct) {  //選択された解答が正解かどうかを判定
+            score++;  //正解数をインクリメント
+        }
+        currentQuestion++;  //次の問題へ
+        if (currentQuestion < currentQuestions.length) {  //次の問題がある場合
+            loadQuiz();  //次の問題を読み込む
+        } else {  //次の問題がない場合
+            showResults();  //結果を表示
+        }
+    } else {  //解答が選択されていない場合
+        alert("回答を選択してください。");  //アラートを表示
+    }
+}
+                        </code></pre>                                                               
+                    </div>
+                    <p>この関数はユーザーの回答をチェックし、正解なら得点を増やします。次の問題に進むか、全問題が終了したら結果を表示します。</p>
+                    </div>
+
+                    <div class="topic" id="result">
+                        <h3>結果の表示</h3>
+                        <p>クイズゲームの結果を表示するための関数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>                    
+                        <div class="code-block">
+                            <button class="copy-button">コピー</button>
+                            <pre><code class="language-javascript">
+//java
+function showResults() {   //結果を表示する関数
+    const resultsElement = document.getElementById("results");   //htmlのresults要素を取得
+    resultsElement.innerHTML = `   //結果を表示
+        &lt;h2&gt;クイズ終了！&lt;/h2&gt;   //タイトルを表示
+        &lt;p&gt;正解数: ${score}/${currentQuestions.length}&lt;/p&gt;   //正解数を表示
+        &lt;button id="showExplanations"&gt;解説を見る&lt;/button&gt;   //解説を見るボタンを表示
+    `;
+    document.getElementById("submit").style.display = "none";   //submitボタンを非表示
+    document.getElementById("showExplanations").addEventListener("click", showExplanations);   //showExplanations関数を呼び出す
+}
+                        </code></pre>                                                               
+                    </div>
+                    <p>この関数は、クイズゲームが終了した際に正解数を表示し、解説を見るボタンを表示します。
+                        記述はほとんど画面の表示を行う関数と同じです。後述するshowExplanations関数を呼び出す部分が追加されています。
+                    </p>
+                    </div>
+                    <div class="topic" id="explanation">
+                        <h3>解説の表示</h3>
+                        <p>最後に、解説を表示するための関数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>
+                        <div class="code-block">
+                            <button class="copy-button">コピー</button>
+                            <pre><code class="language-javascript">
+//java
+function showExplanations() {  //解説を表示する関数
+    const resultsElement = document.getElementById("results");  //htmlのresults要素を取得
+    let explanationsHTML = "&lt;h2&gt;問題の解説&lt;/h2&gt;";  //解説を表示
+    
+    currentQuestions.forEach((question, index) =&gt; {  //全問題に対して繰り返す
+        explanationsHTML += `  //解説を表示
+            &lt;div class="explanation"&gt;  //解説を表示
+                &lt;h3&gt;${index + 1}. ${question.question}&lt;/h3&gt;   //問題文を表示
+                &lt;p&gt;正解: ${question.options[question.correct]}&lt;/p&gt;  //正解を表示
+                &lt;p&gt;${question.explanation}&lt;/p&gt;  //解説を表示
+            &lt;/div&gt;
+        `;
+    });
+    
+    resultsElement.innerHTML = explanationsHTML;
+}
+                        </code></pre>                                                               
+                    </div>
+                    <p>この関数は、全問題の解説を表示するためのものです。
+                        forEach()メソッドは、配列の各要素に対して指定された関数を一度ずつ実行するメソッドです。
+                        この関数では、全問題に対して問題文、正解、解説を表示するHTMLを生成しています。</p> 
+                    </div>
+
+                    <div class="topic" id="submit">
+                        <h3>ボタンを押したときの動き、初期化</h3>
+                        <p>最後に、クイズゲームを初期化するための関数を定義します。前のプログラムに続いて以下のようなプログラムを記述してください。</p>                                           
+                        <div class="code-block">
+                            <button class="copy-button">コピー</button>
+                            <pre><code class="language-javascript">
+//java
+document.getElementById("submit").addEventListener("click", checkAnswer);  //submitボタンをクリックしたときにcheckAnswer関数を呼び出す
+
+initQuiz();  //クイズを初期化
+                        </code></pre>                                                               
+                    </div>
+                    <p>この部分では、submitボタンをクリックしたときにcheckAnswer関数を呼び出すように設定しています。
+                        また、initQuiz関数を呼び出すことでクイズゲームを初期化します。</p>
+                    </div>
+
+    </div>
         <!-- 他のトピックも同様に追加 -->
         <div class="d-flex justify-content-center"> 
             <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Nextpage</button>
         </div>
         <div class="topic" id="time">
             <h3>累計作成時間</h3>
-            <p>10時間</p>
-        </div>        
-    </div>
+            <p>16時間</p>
+        </div>
+
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
