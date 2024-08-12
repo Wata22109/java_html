@@ -19,7 +19,7 @@
     </div>
 
         <div class="topic" id="nodejs">
-            <h2>Node.jsの概要と活用方法</h2>
+            <h3>Node.jsの概要とメリット</h3>
             <p>前頁の特徴の項目で説明したように、Javascriptはブラウザ上で、PythonなどはPC上で動作します。
                 これが生み出す違いはOSの機能にアクセスできるかどうかです。PC上で動作するプログラムはOSの機能にアクセスできますが、
                 ブラウザ上で動作するプログラムはOSの機能にアクセスできません。もしブラウザ上で動作するプログラムがOSにアクセスできてしまうと
@@ -30,22 +30,33 @@
                 これは、ブラウザがJavaScriptの実行環境の役割を果たしてくれているからです。しかし、JavaScriptをブラウザではなくサーバサイドで動かす場合は、
                 実行環境を用意しないといけません。その実行環境がNode.jsです。JavaScriptとNode.jsは全く別物なため、注意が必要です。<br>
                 Node.jsを使うことで、フロントエンド(ユーザーが見える部分)とサーバサイドで使う言語をJavaScriptで統一できるため、プログラマーの負担を減らすことが可能です。
-                <h3>Node.jsを使う場面</h3>
-                <p></p>
-                
-            </p>
-        </div>
+                <div class="topic" id="Advantages">                
+                    <h3>Node.jsを使うメリット</h3>
+                    <h4>サーバーの機能の強化</h4>
+                    <p>Node.jsを導入すれば、C10K問題に対応可能です。C10K問題とは、サーバの機能に余力があるにもかかわらず、
+                        処理方法の特性から接続数が1万を超えると、ネットワークの処理能力が低下してしまう現象のことです。
+                        簡単に言うと、クライアント数が多くなると応答が遅くなる、または停止するということです。
+                        通常、サーバーはひとつの接続に対して、ひとつのプロセスで情報を処理します。
+                        しかし、Node.jsはノンブロッキングI/O方式という一つの処理を行いながら、
+                        他の処理を同時並行で実行できる仕組みを採用しているため、接続数を問わずに迅速な処理が可能です。
+                        複数の接続を1プロセスでまとめて処理できるため、サーバのプロセス上限をはじめとしたC10K問題を解決できます。</p>
+                    <h4>迅速な処理が可能に</h4>
+                    <p>先に述べたようにNode.jsは、ノンブロッキングI/O方式を採用しているため、他の処理を同時並行で実行できる仕組みを持っています。
+                        そのため、複数の処理を同時に行うことができ、迅速な処理が可能です。リアルタイムで接続処理が可能なことから、
+                        チケット予約サイトや迅速な処理が必要なライブチャットなどの開発によく利用されています。</p>
+                    <h4>クライアントとサーバでの言語の統一</h4>
+                    <p>Node.jsを使うことで、フロントエンドとサーバサイドで使う言語をJavaScriptで統一できるため、プログラマーの負担を減らすことが可能です。
+                        これにより、開発効率が向上し、コードの再利用が可能になります。</p>
+                </div>
+            </div>
 
         <!-- 他のトピックも同様に追加 -->
-        <div class="d-flex justify-content-center"> 
-            <button type="button" class="btn btn-primary" onclick="location.href='index3.html'">Nextpage</button>
-
+    <div class="container">
+        <div class="d-flex mb-3">
+            <button type="button" class="btn btn-primary btn-lg p-2" onclick="location.href='index.html'">前のページ</button>
+            <button type="button" class="btn btn-primary btn-lg ms-auto p-2" onclick="location.href='index3.html'">次のページ</button>   
         </div>
-        <div class="topic" id="time">
-            <h3>累計作成時間</h3>
-            <p>8時間</p>
-        </div>        
-    </div>
+    </div>    
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
